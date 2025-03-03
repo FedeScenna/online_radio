@@ -96,12 +96,12 @@ nav .container {
 .logo-circles circle {
     fill: none;
     stroke: var(--text-color);
-    stroke-width: 2;
+    stroke-width: 3;
     transition: all 0.3s ease;
 }
 
 .logo:hover .logo-circles circle {
-    stroke-width: 3;
+    stroke-width: 4;
 }
 
 .nav-links {

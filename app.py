@@ -18,29 +18,29 @@ SHOWS = {
         'episodes': [
             {
                 'date': 'March 15, 2024',
-                'title': 'Spectral Mornings - Smooth Awakening',
+                'title': 'Spectral Mornings',
                 'soundcloud_url': 'https://soundcloud.com/your-morning-jazz/smooth-awakening'
             },
             {
                 'date': 'March 14, 2024',
-                'title': 'Spectral Mornings - Classic Standards',
+                'title': 'Spectral Mornings',
                 'soundcloud_url': 'https://soundcloud.com/your-morning-jazz/classic-standards'
             }
         ]
     },
     'electronic_beats': {
-        'title': 'Rythms Disjunctions',
+        'title': 'Rythm Disjunctions',
         'schedule': 'Weekends 9:00 PM - 11:00 PM',
         'description': 'Immerse yourself in the world of electronic music, featuring the best in house, techno, and ambient. From underground gems to electronic classics.',
         'episodes': [
             {
                 'date': 'March 16, 2024',
-                'title': 'Rythms Disjunctions - Deep House Journey',
+                'title': 'Rythm Disjunctions - Deep House Journey',
                 'soundcloud_url': 'https://soundcloud.com/your-electronic-beats/deep-house-journey'
             },
             {
                 'date': 'March 9, 2024',
-                'title': 'Rythms Disjunctions - Techno Night',
+                'title': 'Rythm Disjunctions - Techno Night',
                 'soundcloud_url': 'https://soundcloud.com/your-electronic-beats/techno-night'
             }
         ]
@@ -55,11 +55,11 @@ def index():
 def shows():
     return render_template('shows.html')
 
-@app.route('/shows/morning-jazz')
+@app.route('/shows/spectral-mornings')
 def morning_jazz():
     return render_template('show_detail.html', show=SHOWS['morning_jazz'])
 
-@app.route('/shows/electronic-beats')
+@app.route('/shows/rythm-disjunctions')
 def electronic_beats():
     return render_template('show_detail.html', show=SHOWS['electronic_beats'])
 

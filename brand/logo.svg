@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>Austral Waves Logo</title>
+    <desc>Official logo of Austral Waves Radio - Concentric circles representing sound waves</desc>
+    
+    <!-- Dark theme version -->
+    <g id="logo-dark">
+        <!-- Outer circle -->
+        <circle cx="250" cy="250" r="225" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+        <!-- Middle circle -->
+        <circle cx="250" cy="250" r="150" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+        <!-- Inner circle -->
+        <circle cx="250" cy="250" r="75" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+        <!-- Intersecting circles -->
+        <circle cx="375" cy="250" r="100" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+        <circle cx="125" cy="250" r="100" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+    </g>
+
+    <!-- Light theme version -->
+    <g id="logo-light" display="none">
+        <!-- Outer circle -->
+        <circle cx="250" cy="250" r="225" fill="none" stroke="#000000" stroke-width="8"/>
+        <!-- Middle circle -->
+        <circle cx="250" cy="250" r="150" fill="none" stroke="#000000" stroke-width="8"/>
+        <!-- Inner circle -->
+        <circle cx="250" cy="250" r="75" fill="none" stroke="#000000" stroke-width="8"/>
+        <!-- Intersecting circles -->
+        <circle cx="375" cy="250" r="100" fill="none" stroke="#000000" stroke-width="8"/>
+        <circle cx="125" cy="250" r="100" fill="none" stroke="#000000" stroke-width="8"/>
+    </g>
+
+    <style>
+        @media (prefers-color-scheme: light) {
+            #logo-dark { display: none; }
+            #logo-light { display: block; }
+        }
+    </style>
+</svg> 

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Online Radio - Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to Online Radio</h1>
+
+<section class="current-show">
+    <h2>Now Playing</h2>
+    <div class="card">
+        <h3>{{ shows[0].title }}</h3>
+        <p>{{ shows[0].description }}</p>
+        <div class="soundcloud-player">
+            <iframe
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url={{ shows[0].soundcloud_url }}&color=%231DB954&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+<section class="upcoming-shows">
+    <h2>Upcoming Shows</h2>
+    {% for show in shows[1:] %}
+    <div class="card">
+        <h3>{{ show.title }}</h3>
+        <p>{{ show.description }}</p>
+        <p><strong>Time:</strong> {{ show.time }}</p>
+        <p><strong>Days:</strong> {{ show.days }}</p>
+        <a href="{{ show.soundcloud_url }}" class="button" target="_blank">Preview Show</a>
+    </div>
+    {% endfor %}
+</section>
+
+<style>
+    .current-show {
+        margin-bottom: 3rem;
+    }
+
+    .soundcloud-player {
+        margin-top: 1rem;
+    }
+
+    h1 {
+        color: var(--accent-color);
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        color: var(--text-color);
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        color: var(--accent-color);
+        margin: 0 0 1rem 0;
+    }
+
+    .card p {
+        margin: 0.5rem 0;
+    }
+</style>
+{% endblock %} 

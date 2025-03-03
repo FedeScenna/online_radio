@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 from datetime import datetime
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, 
+    template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates')))
 
 # Add current year to all templates
 @app.context_processor

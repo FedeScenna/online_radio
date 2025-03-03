@@ -1,0 +1,13 @@
+[build]
+command = "pip install -r requirements.txt && mkdir -p netlify/functions/templates && cp -r templates/* netlify/functions/templates/"
+functions = "netlify/functions"
+publish = "public"
+
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/app"
+status = 200 

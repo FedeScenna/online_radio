@@ -1,0 +1,9 @@
+{
+  "name": "online-radio",
+  "version": "1.0.0",
+  "description": "Online Radio with Flask and Soundcloud",
+  "main": "index.js",
+  "dependencies": {
+    "@netlify/functions": "^2.0.0"
+  }
+} 

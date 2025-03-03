@@ -7,276 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
     <link rel="icon" type="image/png" href="/brand/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/brand/favicon-16x16.png" sizes="16x16">
-    <style>
-        :root[data-theme="dark"] {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --accent-color: #ffffff;
-            --secondary-bg: #111111;
-            --hover-color: #333333;
-            --subtle-color: #888888;
-        }
-
-        :root[data-theme="light"] {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #000000;
-            --secondary-bg: #f5f5f5;
-            --hover-color: #e0e0e0;
-            --subtle-color: #666666;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            letter-spacing: 0.02em;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            background-color: var(--bg-color);
-            border-bottom: 1px solid var(--hover-color);
-            padding: 1.5rem 0;
-            margin-bottom: 3rem;
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--text-color);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .logo svg {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover svg {
-            transform: rotate(180deg);
-        }
-
-        .logo-circles circle {
-            fill: none;
-            stroke: var(--text-color);
-            stroke-width: 2;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover .logo-circles circle {
-            stroke-width: 3;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--subtle-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-color);
-        }
-
-        .card {
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--hover-color);
-            border-radius: 0;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--text-color);
-        }
-
-        .button {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.9rem;
-        }
-
-        .button:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        footer {
-            background-color: var(--bg-color);
-            border-top: 1px solid var(--hover-color);
-            padding: 2rem 0;
-            margin-top: 4rem;
-            text-align: center;
-            color: var(--subtle-color);
-            font-size: 0.9rem;
-        }
-
-        h1, h2, h3 {
-            font-weight: 300;
-            letter-spacing: 0.05em;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--subtle-color);
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .theme-switch {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-left: 2rem;
-        }
-
-        .theme-switch label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--subtle-color);
-            user-select: none;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 48px;
-            height: 24px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--text-color);
-            transition: 0.3s;
-            overflow: hidden;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: var(--text-color);
-            transition: 0.3s;
-            z-index: 2;
-        }
-
-        input:checked + .slider {
-            background-color: var(--text-color);
-        }
-
-        input:checked + .slider:before {
-            background-color: var(--bg-color);
-            transform: translateX(24px);
-        }
-
-        /* Theme text labels */
-        .slider:after {
-            content: "Light";
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 10px;
-            color: var(--text-color);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        input:checked + .slider:after {
-            content: "Dark";
-            left: 7px;
-            right: auto;
-            color: var(--bg-color);
-        }
-
-        @media (max-width: 768px) {
-            nav .container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
-
-            .theme-switch {
-                margin: 1rem 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <nav>
@@ -296,16 +27,18 @@
                     </svg>
                     Austral Waves
                 </a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/shows">Shows</a>
                 <div class="theme-switch">
+                    <span class="theme-text">Light</span>
                     <label class="switch">
                         <input type="checkbox" id="themeToggle">
                         <span class="slider"></span>
                     </label>
+                    <span class="theme-text">Dark</span>
                 </div>
-            </div>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/schedule">Schedule</a>
             </div>
         </div>
     </nav>
@@ -321,25 +54,23 @@
     </footer>
 
     <script>
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+        // Theme handling
         const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         
-        // Initialize toggle state
-        themeToggle.checked = savedTheme === 'dark';
-        setTheme(savedTheme);
-
-        // Theme toggle handler
-        themeToggle.addEventListener('change', function() {
-            const theme = this.checked ? 'dark' : 'light';
-            setTheme(theme);
-        });
-
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
             themeToggle.checked = theme === 'dark';
         }
+
+        // Initialize theme
+        setTheme(savedTheme);
+
+        // Theme toggle handler
+        themeToggle.addEventListener('change', () => {
+            setTheme(themeToggle.checked ? 'dark' : 'light');
+        });
     </script>
 </body>
 </html> 

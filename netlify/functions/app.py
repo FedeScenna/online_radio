@@ -1,15 +1,9 @@
-from flask import Flask, render_template, Response
 from datetime import datetime
 import json
+from pathlib import Path
+import os
 
-app = Flask(__name__)
-
-# Add current year to all templates
-@app.context_processor
-def inject_year():
-    return {'year': datetime.now().year}
-
-# Sample show data - in a real application, this would come from a database
+# Sample show data
 SHOWS = [
     {
         'title': 'Morning Jazz',
@@ -27,28 +21,73 @@ SHOWS = [
     }
 ]
 
-def render_with_year(template_name, **kwargs):
-    kwargs['year'] = datetime.now().year
-    return render_template(template_name, **kwargs)
+def read_template(template_name):
+    template_path = Path(__file__).parent / 'templates' / template_name
+    with open(template_path, 'r', encoding='utf-8') as f:
+        return f.read()
 
 def handler(event, context):
     """Netlify Function handler."""
     path = event.get('path', '').rstrip('/')
     
-    if path == '' or path == '/':
-        body = render_with_year('index.html', shows=SHOWS)
-    elif path == '/schedule':
-        body = render_with_year('schedule.html', shows=SHOWS)
-    else:
-        return {
-            'statusCode': 404,
-            'body': json.dumps({'error': 'Not Found'})
-        }
+    try:
+        if path == '' or path == '/':
+            template = read_template('index.html')
+        elif path == '/schedule':
+            template = read_template('schedule.html')
+        else:
+            return {
+                'statusCode': 404,
+                'body': json.dumps({'error': 'Not Found'})
+            }
 
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'text/html',
-        },
-        'body': body
-    } 
+        # Simple template variable replacement
+        current_year = datetime.now().year
+        content = template.replace('{{ year }}', str(current_year))
+        
+        # Replace show data
+        if '{% for show in shows %}' in content:
+            show_html = ''
+            for show in SHOWS:
+                show_template = '''
+                <div class="card">
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <p><strong>Time:</strong> {time}</p>
+                    <p><strong>Days:</strong> {days}</p>
+                    <div class="soundcloud-player">
+                        <iframe
+                            width="100%"
+                            height="166"
+                            scrolling="no"
+                            frameborder="no"
+                            allow="autoplay"
+                            src="https://w.soundcloud.com/player/?url={url}&color=%231DB954&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+                        ></iframe>
+                    </div>
+                </div>
+                '''.format(
+                    title=show['title'],
+                    description=show['description'],
+                    time=show['time'],
+                    days=show['days'],
+                    url=show['soundcloud_url']
+                )
+                show_html += show_template
+            
+            start = content.find('{% for show in shows %}')
+            end = content.find('{% endfor %}') + len('{% endfor %}')
+            content = content[:start] + show_html + content[end:]
+
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'text/html',
+            },
+            'body': content
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({'error': str(e)})
+        } 

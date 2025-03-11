@@ -1,0 +1,30 @@
+{
+    "morning_jazz": {
+        "title": "Spectral Mornings",
+        "schedule": "Weekdays 8:00 AM - 10:00 AM",
+        "description": "Start your day with smooth jazz selections from classic and contemporary artists. A perfect blend of instrumental and vocal jazz to energize your morning.",
+        "episodes": [
+            {
+                "id": "a76d70d9-53b0-43f6-b33d-6c8e9f20c3ef",
+                "date": "March 15, 2024",
+                "title": "Spectral Mornings - Smooth Awakening",
+                "platform": "mixcloud",
+                "mixcloud_url": "https://www.mixcloud.com/austral-waves/spectral-mornings-smooth-awakening/"
+            }
+        ]
+    },
+    "electronic_beats": {
+        "title": "Rythms Disjunctions",
+        "schedule": "Weekends 9:00 PM - 11:00 PM",
+        "description": "Immerse yourself in the world of electronic music, featuring the best in house, techno, and ambient. From underground gems to electronic classics.",
+        "episodes": [
+            {
+                "id": "16a8ab0d-a7c5-4d1c-ac18-73fd87ba331a",
+                "date": "March 16, 2024",
+                "title": "Rythms Disjunctions - Deep House Journey",
+                "platform": "mixcloud",
+                "mixcloud_url": "https://www.mixcloud.com/austral-waves/rythms-disjunctions-deep-house-journey/"
+            }
+        ]
+    }
+}
